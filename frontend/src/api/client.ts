@@ -28,10 +28,14 @@ export interface Indicator {
   raw: Record<string, Record<string, unknown>>
 }
 
-const BASE = '/api'
+const BASE = (import.meta.env.VITE_API_BASE_URL ?? '/api').replace(/\/$/, '')
+
+const AUTH_HEADERS: Record<string, string> = import.meta.env.VITE_API_KEY
+  ? { 'X-API-Key': import.meta.env.VITE_API_KEY as string }
+  : {}
 
 async function get<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`)
+  const res = await fetch(`${BASE}${path}`, { headers: AUTH_HEADERS })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   return res.json() as Promise<T>
 }
@@ -39,7 +43,7 @@ async function get<T>(path: string): Promise<T> {
 async function post<T>(path: string, body: unknown): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...AUTH_HEADERS },
     body: JSON.stringify(body),
   })
   if (!res.ok) {
