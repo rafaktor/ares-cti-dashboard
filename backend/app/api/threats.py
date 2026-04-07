@@ -8,7 +8,7 @@ threats_bp = Blueprint("threats", __name__)
 @threats_bp.get("/threats/feed")
 @cache.cached(timeout=300, query_string=True)
 def threat_feed():
-    limit = request.args.get("limit", 20, type=int)
+    limit = min(max(request.args.get("limit", 20, type=int), 1), 100)
     pulses = alienvault.get_pulses(limit=limit)
     feed = [
         {
