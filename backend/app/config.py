@@ -23,7 +23,6 @@ class Config:
     REQUEST_TIMEOUT = 10  # seconds per upstream call
 
     # Rate limiting
-    RATELIMIT_DEFAULT = ["60 per hour", "10 per minute"]
     RATELIMIT_STORAGE_URI = os.getenv("REDIS_URL", "memory://")
     RATELIMIT_HEADERS_ENABLED = True
 
@@ -34,9 +33,10 @@ class DevelopmentConfig(Config):
 
 
 class ProductionConfig(Config):
-    CACHE_TYPE = "RedisCache"
-    CACHE_REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
-    RATELIMIT_STORAGE_URI = os.getenv("REDIS_URL", "memory://")
+    _redis_url = os.getenv("REDIS_URL", "")
+    CACHE_TYPE = "RedisCache" if _redis_url else "SimpleCache"
+    CACHE_REDIS_URL = _redis_url or None
+    RATELIMIT_STORAGE_URI = _redis_url or "memory://"
 
 
 config = {
