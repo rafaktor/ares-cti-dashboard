@@ -14,6 +14,8 @@ limiter = Limiter(key_func=get_remote_address, default_limits=["60 per hour", "1
 
 def _check_api_key(app: Flask):
     """Before-request guard: require X-API-Key on all /api/* routes."""
+    if request.method == "OPTIONS":
+        return
     required_key = app.config.get("DASHBOARD_API_KEY", "")
     if not required_key:
         # No key configured — open (useful during local dev without the env var)
