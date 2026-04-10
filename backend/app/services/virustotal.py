@@ -22,7 +22,7 @@ def lookup_hash(file_hash: str) -> dict:
 
 def _lookup(url: str) -> dict:
     try:
-        resp = requests.get(url, headers=_headers(), timeout=current_app.config["REQUEST_TIMEOUT"])
+        resp = requests.get(url, headers=_headers(), timeout=current_app.config["REQUEST_TIMEOUT"])  # nosec B113
         resp.raise_for_status()
         data = resp.json().get("data", {}).get("attributes", {})
         stats = data.get("last_analysis_stats", {})

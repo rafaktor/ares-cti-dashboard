@@ -6,7 +6,7 @@ ABUSEIPDB_URL = "https://api.abuseipdb.com/api/v2/check"
 
 def lookup(ip: str) -> dict:
     try:
-        resp = requests.get(
+        resp = requests.get(  # nosec B113 — timeout is set via config
             ABUSEIPDB_URL,
             headers={"Key": current_app.config["ABUSEIPDB_API_KEY"], "Accept": "application/json"},
             params={"ipAddress": ip, "maxAgeInDays": 90, "verbose": True},

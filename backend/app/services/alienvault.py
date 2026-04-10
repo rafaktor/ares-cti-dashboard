@@ -17,7 +17,7 @@ def lookup(ioc: str, ioc_type: str = "IPv4") -> dict:
     }
     url = section_map.get(ioc_type, section_map["IPv4"])
     try:
-        resp = requests.get(url, headers=_headers(), timeout=current_app.config["REQUEST_TIMEOUT"])
+        resp = requests.get(url, headers=_headers(), timeout=current_app.config["REQUEST_TIMEOUT"])  # nosec B113
         resp.raise_for_status()
         data = resp.json()
         pulse_count = data.get("pulse_info", {}).get("count", 0)
@@ -35,7 +35,7 @@ def lookup(ioc: str, ioc_type: str = "IPv4") -> dict:
 
 def get_pulses(limit: int = 20) -> list:
     try:
-        resp = requests.get(
+        resp = requests.get(  # nosec B113 — timeout is set via config
             f"{OTX_URL}/pulses/subscribed",
             headers=_headers(),
             params={"limit": limit},
