@@ -50,12 +50,14 @@ def create_app(env: str = None) -> Flask:
 
     # ── Blueprints ───────────────────────────────────────────────────────────
     from app.api.health import health_bp
+    from app.api.incidents import incidents_bp
     from app.api.indicators import indicators_bp
     from app.api.threats import threats_bp
 
     app.register_blueprint(health_bp, url_prefix="/api")
     app.register_blueprint(threats_bp, url_prefix="/api")
     app.register_blueprint(indicators_bp, url_prefix="/api")
+    app.register_blueprint(incidents_bp, url_prefix="/api")
 
     # ── Error handlers (no stack traces to callers) ──────────────────────────
     @app.errorhandler(400)

@@ -22,6 +22,9 @@ class Config:
 
     REQUEST_TIMEOUT = 10  # seconds per upstream call
 
+    # Webhook URL for SOAR incident alerts (Slack-compatible)
+    WEBHOOK_URL = os.getenv("WEBHOOK_URL", "")
+
     # Rate limiting
     RATELIMIT_STORAGE_URI = os.getenv("REDIS_URL", "memory://")
     RATELIMIT_HEADERS_ENABLED = True

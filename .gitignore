@@ -1,4 +1,4 @@
-# ─── Python ──────────────────────────────────────────────────────────────────
+# ─── Python ────────
 __pycache__/
 *.py[cod]
 *.pyo
@@ -24,18 +24,18 @@ htmlcov/
 .tox/
 *.log
 
-# ─── Environment & Secrets ───────────────────────────────────────────────────
+# ─── Environment & Secrets ──
 .env
 .env.*
 !.env.example
 
-# ─── Node / Frontend ─────────────────────────────────────────────────────────
+# ─── Node / Frontend ───────
 node_modules/
 frontend/dist/
 frontend/.vite/
 *.tsbuildinfo
 
-# ─── macOS ───────────────────────────────────────────────────────────────────
+# ─── macOS ────────
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -45,22 +45,15 @@ frontend/.vite/
 ehthumbs.db
 Thumbs.db
 
-# ─── IDEs ────────────────────────────────────────────────────────────────────
+# ─── IDEs ─────────
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# ─── Docker ──────────────────────────────────────────────────────────────────
+# ─── Docker ─────────────
 *.env.docker
 
-# ─── Docs build artifacts (keep .tex, ignore compiled output) ────────────────
-docs/*.aux
-docs/*.log
-docs/*.out
-docs/*.toc
-docs/*.fls
-docs/*.fdb_latexmk
-docs/*.synctex.gz
-# Keep the PDF — it's the deliverable
+# ─── Docs (kept local only) ──────────────
+docs/
