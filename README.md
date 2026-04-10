@@ -1,8 +1,8 @@
 # Ares CTI Dashboard
 
 [![CI](https://github.com/rodriguezgonzalez/ares-cti-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/rodriguezgonzalez/ares-cti-dashboard/actions/workflows/ci.yml)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=rodriguezgonzalez_ares-cti-dashboard&metric=alert_status)](https://sonarcloud.io/project/overview?id=rodriguezgonzalez_ares-cti-dashboard)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rodriguezgonzalez_ares-cti-dashboard&metric=coverage)](https://sonarcloud.io/project/overview?id=rodriguezgonzalez_ares-cti-dashboard)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=rafaktor_ares-cti-dashboard&metric=alert_status)](https://sonarcloud.io/project/overview?id=rafaktor_ares-cti-dashboard)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rafaktor_ares-cti-dashboard&metric=coverage)](https://sonarcloud.io/project/overview?id=rafaktor_ares-cti-dashboard)
 
 Cyber Threat Intelligence dashboard — aggregates and visualizes threat feeds, IOCs, and security events in real time.
 
