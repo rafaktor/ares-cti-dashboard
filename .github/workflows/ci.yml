@@ -31,7 +31,7 @@ jobs:
           bandit -r backend/app \
             --severity-level medium \
             --confidence-level medium \
-            -f text
+            -f txt
 
       - name: Upload Bandit report
         if: always()
