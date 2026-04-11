@@ -31,24 +31,24 @@ def create_app(env: str = None) -> Flask:
     env = env or os.getenv("FLASK_ENV", "default")
     app.config.from_object(config[env])
 
-    # ── Logging ─────────────────────────────────────────────────────────────
+    # ── Logging ──────────────
     if not app.debug:
         logging.basicConfig(level=logging.INFO)
 
-    # ── CORS ─────────────────────────────────────────────────────────────────
+    # ── CORS ─────────────────────────
     origin = app.config.get("CORS_ORIGIN", "")
     CORS(app, origins=[origin] if origin else [], supports_credentials=False)
 
-    # ── Cache ────────────────────────────────────────────────────────────────
+    # ── Cache ──────────────────────────────────────────────
     cache.init_app(app)
 
-    # ── Rate limiter ─────────────────────────────────────────────────────────
+    # ── Rate limiter ────────────────────────────────────
     limiter.init_app(app)
 
-    # ── Authentication ───────────────────────────────────────────────────────
+    # ── Authentication ──────────────────────────────────
     app.before_request(lambda: _check_api_key(app))
 
-    # ── Blueprints ───────────────────────────────────────────────────────────
+    # ── Blueprints ──────────────────────────────
     from app.api.health import health_bp
     from app.api.incidents import incidents_bp
     from app.api.indicators import indicators_bp

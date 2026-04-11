@@ -1,0 +1,7 @@
+[run]
+source = app
+
+[paths]
+source =
+    backend/app
+    app
