@@ -52,20 +52,18 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: |
-          cd backend
-          pip install -r requirements.txt -r requirements-dev.txt
+        run: pip install -r backend/requirements.txt -r backend/requirements-dev.txt
 
       - name: Run pytest with coverage
         env:
           FLASK_ENV: development
           DASHBOARD_API_KEY: ""
+          PYTHONPATH: backend
         run: |
-          cd backend
-          pytest tests/ \
-            --cov=app \
+          pytest backend/tests/ \
+            --cov=backend/app \
             --cov-config=.coveragerc \
-            --cov-report=xml:../coverage.xml \
+            --cov-report=xml:coverage.xml \
             --cov-report=term-missing \
             -v
 
