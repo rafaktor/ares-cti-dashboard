@@ -1,3 +1,5 @@
+from urllib.parse import quote
+
 import requests
 from flask import current_app
 
@@ -9,15 +11,17 @@ def _headers() -> dict:
 
 
 def lookup_ip(ip: str) -> dict:
-    return _lookup(f"{VT_URL}/ip_addresses/{ip}")
+    # quote(..., safe="") — the IOC comes from user input and must never be able
+    # to inject path segments (`/`, `..`) into the upstream request.
+    return _lookup(f"{VT_URL}/ip_addresses/{quote(ip, safe='')}")
 
 
 def lookup_domain(domain: str) -> dict:
-    return _lookup(f"{VT_URL}/domains/{domain}")
+    return _lookup(f"{VT_URL}/domains/{quote(domain, safe='')}")
 
 
 def lookup_hash(file_hash: str) -> dict:
-    return _lookup(f"{VT_URL}/files/{file_hash}")
+    return _lookup(f"{VT_URL}/files/{quote(file_hash, safe='')}")
 
 
 def _lookup(url: str) -> dict:

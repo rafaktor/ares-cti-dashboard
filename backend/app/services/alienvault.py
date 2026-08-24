@@ -1,3 +1,5 @@
+from urllib.parse import quote
+
 import requests
 from flask import current_app
 
@@ -10,10 +12,13 @@ def _headers() -> dict:
 
 def lookup(ioc: str, ioc_type: str = "IPv4") -> dict:
     """ioc_type: IPv4 | domain | file"""
+    # quote(..., safe="") — the IOC comes from user input and must never be able
+    # to inject path segments (`/`, `..`) into the upstream request.
+    safe_ioc = quote(ioc, safe="")
     section_map = {
-        "IPv4": f"{OTX_URL}/indicators/IPv4/{ioc}/general",
-        "domain": f"{OTX_URL}/indicators/domain/{ioc}/general",
-        "file": f"{OTX_URL}/indicators/file/{ioc}/general",
+        "IPv4": f"{OTX_URL}/indicators/IPv4/{safe_ioc}/general",
+        "domain": f"{OTX_URL}/indicators/domain/{safe_ioc}/general",
+        "file": f"{OTX_URL}/indicators/file/{safe_ioc}/general",
     }
     url = section_map.get(ioc_type, section_map["IPv4"])
     try:
