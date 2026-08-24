@@ -1,0 +1,21 @@
+# Calls the central security pipeline: rafaktor/security-pipeline
+# Scans on every push and PR. Update the central repo to change behavior everywhere.
+name: Security
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 8 * * 1" # weekly Monday scan, catches newly-disclosed CVEs
+
+permissions:
+  contents: write
+  pull-requests: write
+  security-events: write
+  actions: read
+  id-token: write
+
+jobs:
+  scan:
+    uses: rafaktor/security-pipeline/.github/workflows/security-scan.yml@main
+    secrets: inherit
