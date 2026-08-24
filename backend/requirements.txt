@@ -6,4 +6,4 @@ flask-limiter>=3.5.0
 gunicorn>=22.0.0
 python-dotenv>=1.0.1
 redis>=5.0.0
-requests>=2.31.0
+requests>=2.34.2
