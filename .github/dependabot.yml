@@ -3,7 +3,15 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly }
+    groups:
+      github-actions-minor-patch:
+        applies-to: version-updates
+        update-types: ["minor", "patch"]
   - package-ecosystem: pip
     directory: /
     schedule: { interval: weekly }
     open-pull-requests-limit: 5
+    groups:
+      pip-minor-patch:
+        applies-to: version-updates
+        update-types: ["minor", "patch"]
