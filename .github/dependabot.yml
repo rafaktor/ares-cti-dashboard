@@ -3,6 +3,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly }
+    cooldown: { default-days: 7 }
     groups:
       github-actions-minor-patch:
         applies-to: version-updates
@@ -10,6 +11,7 @@ updates:
   - package-ecosystem: pip
     directory: /
     schedule: { interval: weekly }
+    cooldown: { default-days: 7 }
     open-pull-requests-limit: 5
     groups:
       pip-minor-patch:
